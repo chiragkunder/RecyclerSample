@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recyclersample.cards_component.CardViewComponent
 import com.ckunder.recyclersample.cards_component.CardADLViewEntity
 import com.ckunder.recyclersample.group_component.GroupADLViewEntity
-import com.ckunder.recyclersample.group_component.GroupViewComponent
+import com.ckunder.recyclersample.group_component.NestedRecyclerViewComponent
 import com.ckunder.recyclersample.headline_component.TwoLineADLViewEntity
 import com.ckunder.recyclersample.headline_component.TwoLineViewComponent
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.reflect.KClass
 
+@Suppress("UNCHECKED_CAST")
 class MainActivity : AppCompatActivity() {
 
     private val viewPool = RecyclerView.RecycledViewPool()
@@ -45,7 +47,10 @@ class MainActivity : AppCompatActivity() {
         TwoLineADLViewEntity(title = "title16", subtitle = "subtitle16")
     )
 
-    private val recyclerViewAdapter = RecyclerViewAdapter<ViewComponent, ViewHolder>(viewPool)
+    private val recyclerViewAdapter =
+        RecyclerViewAdapter<ViewComponent<ADLViewEntity>, ViewHolder>(viewPool, provideComponents())
+    private val childAdapter =
+        RecyclerViewAdapter<ViewComponent<ADLViewEntity>, ViewHolder>(viewPool, provideGroupComponents())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,14 +62,20 @@ class MainActivity : AppCompatActivity() {
             setRecycledViewPool(viewPool)
         }
 
-        recyclerViewAdapter.updateList(uiEntities.map { createComponent(it) })
+        recyclerViewAdapter.updateList(uiEntities)
     }
 
-    private fun createComponent(adlViewEntity: ADLViewEntity): ViewComponent =
-        when (adlViewEntity) {
-            is TwoLineADLViewEntity -> TwoLineViewComponent(adlViewEntity)
-            is GroupADLViewEntity -> GroupViewComponent(adlViewEntity)
-            is CardADLViewEntity -> CardViewComponent(adlViewEntity)
-            else -> throw Exception("")
-        }
+    private fun provideComponents(): Map<KClass<out ADLViewEntity>, ViewComponent<ADLViewEntity>> {
+        val delegates = HashMap<KClass<out ADLViewEntity>, ViewComponent<ADLViewEntity>>()
+        delegates[TwoLineADLViewEntity::class] = TwoLineViewComponent() as ViewComponent<ADLViewEntity>
+        delegates[GroupADLViewEntity::class] = NestedRecyclerViewComponent(childAdapter) as ViewComponent<ADLViewEntity>
+        delegates[CardADLViewEntity::class] = CardViewComponent() as ViewComponent<ADLViewEntity>
+        return delegates
+    }
+
+    private fun provideGroupComponents(): Map<KClass<out ADLViewEntity>, ViewComponent<ADLViewEntity>> {
+        val delegates = HashMap<KClass<out ADLViewEntity>, ViewComponent<ADLViewEntity>>()
+        delegates[TwoLineADLViewEntity::class] = TwoLineViewComponent() as ViewComponent<ADLViewEntity>
+        return delegates
+    }
 }

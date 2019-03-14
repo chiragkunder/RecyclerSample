@@ -1,34 +1,31 @@
 package com.ckunder.recyclersample
 
-import androidx.recyclerview.widget.DiffUtil
+import com.ckunder.recyclersample.adapter.DisplayableItem
+import com.ckunder.recyclersample.adapter.SimpleItemComparator
+import kotlin.reflect.KClass
 
 class ViewComponentComparator(
-    private val oldComponents: List<ViewComponent>,
-    private val newComponents: List<ViewComponent>
-) : DiffUtil.Callback() {
+    private val componentsMap: Map<KClass<out ADLViewEntity>, ViewComponent<ADLViewEntity>>
+) : SimpleItemComparator {
 
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val oldComponent = oldComponents[oldItemPosition]
-        val newComponent = newComponents[newItemPosition]
-
-        return oldComponent.areItemsTheSame(newComponent)
+    override fun areItemsTheSame(item1: DisplayableItem<*>, item2: DisplayableItem<*>): Boolean {
+        val adlViewEntity1 = item1.model as ADLViewEntity
+        val adlViewEntity2 = item2.model as ADLViewEntity
+        val viewComponent = componentsMap[adlViewEntity1::class] as ViewComponent<ADLViewEntity>
+        return viewComponent.sameItem(adlViewEntity1, adlViewEntity2)
     }
 
-    override fun getOldListSize(): Int = oldComponents.size
-
-    override fun getNewListSize(): Int = newComponents.size
-
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val oldComponent = oldComponents[oldItemPosition]
-        val newComponent = newComponents[newItemPosition]
-
-        return oldComponent.areContentsTheSame(newComponent)
+    override fun areContentsTheSame(item1: DisplayableItem<*>, item2: DisplayableItem<*>): Boolean {
+        val adlViewEntity1 = item1.model as ADLViewEntity
+        val adlViewEntity2 = item2.model as ADLViewEntity
+        val viewComponent = componentsMap[adlViewEntity1::class] as ViewComponent<ADLViewEntity>
+        return viewComponent.sameContent(adlViewEntity1, adlViewEntity2)
     }
 
-    override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
-        val oldComponent = oldComponents[oldItemPosition]
-        val newComponent = newComponents[newItemPosition]
-
-        return oldComponent.getChangePayload(newComponent)
+    override fun getChangePayload(item1: DisplayableItem<*>, item2: DisplayableItem<*>): Any? {
+        val adlViewEntity1 = item1.model as ADLViewEntity
+        val adlViewEntity2 = item2.model as ADLViewEntity
+        val viewComponent = componentsMap[adlViewEntity1::class] as ViewComponent<ADLViewEntity>
+        return viewComponent.getChangePayload(adlViewEntity1, adlViewEntity2)
     }
 }
