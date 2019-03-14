@@ -31,7 +31,6 @@ class RecyclerViewAdapter<Component : ViewComponent, ViewHolder : com.ckunder.re
         components[position].bindView(holder = holder, position = position, payloads = payloads)
     }
 
-
     fun updateList(list: List<Component>) {
         val result = DiffUtil.calculateDiff(
             ViewComponentComparator(components, list), false
