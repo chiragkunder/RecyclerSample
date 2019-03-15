@@ -10,6 +10,8 @@ import com.ckunder.recyclersample.group_component.GroupADLViewEntity
 import com.ckunder.recyclersample.group_component.GroupViewComponent
 import com.ckunder.recyclersample.headline_component.TwoLineADLViewEntity
 import com.ckunder.recyclersample.headline_component.TwoLineViewComponent
+import com.ckunder.recyclersample.recyler_framework.N26ViewHolder
+import com.ckunder.recyclersample.recyler_framework.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +47,8 @@ class MainActivity : AppCompatActivity() {
         TwoLineADLViewEntity(title = "title16", subtitle = "subtitle16")
     )
 
-    private val recyclerViewAdapter = RecyclerViewAdapter<ViewComponent, ViewHolder>(viewPool)
+    private val recyclerViewAdapter =
+        RecyclerViewAdapter<ADLViewController, N26ViewHolder>(viewPool)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         recyclerViewAdapter.updateList(uiEntities.map { createComponent(it) })
     }
 
-    private fun createComponent(adlViewEntity: ADLViewEntity): ViewComponent =
+    private fun createComponent(adlViewEntity: ADLViewEntity): ADLViewController =
         when (adlViewEntity) {
             is TwoLineADLViewEntity -> TwoLineViewComponent(adlViewEntity)
             is GroupADLViewEntity -> GroupViewComponent(adlViewEntity)

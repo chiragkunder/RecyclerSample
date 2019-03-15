@@ -2,59 +2,41 @@ package com.ckunder.recyclersample.cards_component
 
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
-import com.ckunder.recyclersample.ViewHolder
+import com.ckunder.recyclersample.recyler_framework.N26ViewHolder
 import com.ckunder.recyclersample.R
-import com.ckunder.recyclersample.ViewComponent
+import com.ckunder.recyclersample.ADLViewController
+import com.ckunder.recyclersample.recyler_framework.AdapterDelegateForXML
 import kotlinx.android.synthetic.main.two_line_view_component.view.*
 
 private const val TITLE_CHANGED = 0
 private const val SUBTITLE_CHANGED = 1
 
-class CardViewComponent(
-    private val cardViewEntity: CardADLViewEntity
-) : ViewComponent(cardViewEntity) {
+class CardViewComponent : AdapterDelegateForXML<CardADLViewEntity>() {
 
     override fun getLayoutId(): Int = R.layout.card_view_component
 
-    override fun onCreate(holder: ViewHolder, viewPool: RecyclerView.RecycledViewPool) {
-        val position = holder.adapterPosition
-
-        holder.itemView.setOnClickListener {
-            //Send events
-        }
-
-        Log.i("SAMPLE_VIEWPOOL", "CardView: $viewPool")
-    }
-
-    override fun bindView(holder: ViewHolder, position: Int, payloads: MutableList<Any?>?) {
-
+    override fun bindView(holder: N26ViewHolder, viewEntity: CardADLViewEntity, payloads: MutableList<Any?>) {
         if (payloads.isNullOrEmpty()) {
-            holder.itemView.title.text = cardViewEntity.title
-            holder.itemView.subtitle.text = cardViewEntity.subtitle
+            holder.itemView.title.text = viewEntity.title
+            holder.itemView.subtitle.text = viewEntity.subtitle
         } else {
             payloads.forEach {
                 when (it) {
-                    TITLE_CHANGED -> holder.itemView.title.text = cardViewEntity.title
-                    SUBTITLE_CHANGED -> holder.itemView.subtitle.text = cardViewEntity.subtitle
+                    TITLE_CHANGED -> holder.itemView.title.text = viewEntity.title
+                    SUBTITLE_CHANGED -> holder.itemView.subtitle.text = viewEntity.subtitle
                 }
             }
         }
     }
 
-    override fun areContentsTheSame(viewComponent: ViewComponent): Boolean {
-        return super.areContentsTheSame(viewComponent)
-    }
-
-    override fun getChangePayload(newComponent: ViewComponent): Any? {
-        val cardViewComponent = newComponent as CardViewComponent
-
+    override fun getChangePayload(oldItem: CardADLViewEntity, newItem: CardADLViewEntity): Any? {
         val changedPayloads = mutableListOf<Int>()
 
-        if (cardViewEntity.title != cardViewComponent.cardViewEntity.title) {
+        if (oldItem.title != newItem.title) {
             changedPayloads += TITLE_CHANGED
         }
 
-        if (cardViewEntity.subtitle != cardViewComponent.cardViewEntity.subtitle) {
+        if (oldItem.subtitle != newItem.subtitle) {
             changedPayloads += SUBTITLE_CHANGED
         }
 
