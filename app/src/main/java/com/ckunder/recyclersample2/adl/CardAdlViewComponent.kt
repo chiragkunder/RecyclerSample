@@ -8,12 +8,12 @@ import android.widget.FrameLayout
 import com.ckunder.recyclersample.R
 import kotlinx.android.synthetic.main.two_line_view_component.view.*
 
-class TwoLineAdlViewComponent(
+class CardAdlViewComponent(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
     root: ViewGroup? = null
-) : FrameLayout(context, attrs, defStyleAttr) {
+) :  FrameLayout(context, attrs, defStyleAttr) {
 
     init {
         root
@@ -21,12 +21,12 @@ class TwoLineAdlViewComponent(
             ?: LayoutInflater.from(context).inflate(layoutId, this)
     }
 
-    fun setViewEntity(viewEntity: TwoLineAdlViewEntity) {
+    fun setViewEntity(viewEntity: CardAdlViewEntity) {
         title.text = viewEntity.title
         subtitle.text = viewEntity.subtitle
     }
 
     companion object {
-        const val layoutId: Int = R.layout.two_line_view_component
+        const val layoutId = R.layout.card_view_component
     }
 }
