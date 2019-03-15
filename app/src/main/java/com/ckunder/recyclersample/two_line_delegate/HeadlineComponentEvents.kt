@@ -1,4 +1,4 @@
-package com.ckunder.recyclersample.headline_component
+package com.ckunder.recyclersample.two_line_delegate
 
 import com.ckunder.recyclersample.Event
 

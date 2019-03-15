@@ -4,12 +4,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.ListAdapter
-import com.ckunder.recyclersample.ADLViewEntity
+import com.ckunder.recyclersample.Identifiable
 import kotlin.reflect.KClass
 
 
 @Suppress("UNCHECKED_CAST")
-class RecyclerViewAdapter<Entity : ADLViewEntity, VH : N26ViewHolder>(
+class RecyclerViewAdapter<Entity : Identifiable, VH : N26ViewHolder>(
     private val delegatesMap: Map<KClass<Entity>, AdapterDelegate<View, Entity>>
 ) : ListAdapter<Entity, VH>(Comparator<Entity>(delegatesMap)) {
 

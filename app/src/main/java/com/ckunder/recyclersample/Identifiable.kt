@@ -1,6 +1,6 @@
 package com.ckunder.recyclersample
 
-interface ADLViewEntity {
+interface Identifiable {
 
     val id: Long
 }

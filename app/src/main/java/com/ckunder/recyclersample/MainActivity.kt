@@ -8,8 +8,8 @@ import com.ckunder.recyclersample.cards_component.CardViewComponent
 import com.ckunder.recyclersample.cards_component.CardADLViewEntity
 import com.ckunder.recyclersample.group_component.GroupADLViewEntity
 import com.ckunder.recyclersample.group_component.GroupViewComponent
-import com.ckunder.recyclersample.headline_component.TwoLineADLViewEntity
-import com.ckunder.recyclersample.headline_component.TwoLineViewComponent
+import com.ckunder.recyclersample.two_line_delegate.TwoLineADLViewEntity
+import com.ckunder.recyclersample.two_line_delegate.TwoLineDelegate
 import com.ckunder.recyclersample.recyler_framework.N26ViewHolder
 import com.ckunder.recyclersample.recyler_framework.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -63,9 +63,9 @@ class MainActivity : AppCompatActivity() {
         recyclerViewAdapter.updateList(uiEntities.map { createComponent(it) })
     }
 
-    private fun createComponent(adlViewEntity: ADLViewEntity): ADLViewController =
+    private fun createComponent(adlViewEntity: Identifiable): ADLViewController =
         when (adlViewEntity) {
-            is TwoLineADLViewEntity -> TwoLineViewComponent(adlViewEntity)
+            is TwoLineADLViewEntity -> TwoLineDelegate(adlViewEntity)
             is GroupADLViewEntity -> GroupViewComponent(adlViewEntity)
             is CardADLViewEntity -> CardViewComponent(adlViewEntity)
             else -> throw Exception("")

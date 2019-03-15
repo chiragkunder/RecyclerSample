@@ -2,9 +2,10 @@ package com.ckunder.recyclersample.recyler_framework
 
 import android.view.View
 import android.view.ViewGroup
-import com.ckunder.recyclersample.ADLViewEntity
+import com.ckunder.recyclersample.Identifiable
 
-abstract class AdapterDelegate<VIEW : View, ENTITY : ADLViewEntity> {
+@Suppress("UNCHECKED_CAST")
+abstract class AdapterDelegate<VIEW : View, ENTITY : Identifiable> {
 
     abstract fun getItemType(): Int
 

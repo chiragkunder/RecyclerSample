@@ -2,11 +2,11 @@ package com.ckunder.recyclersample.recyler_framework
 
 import android.view.View
 import androidx.recyclerview.widget.DiffUtil
-import com.ckunder.recyclersample.ADLViewEntity
+import com.ckunder.recyclersample.Identifiable
 import java.lang.IllegalStateException
 import kotlin.reflect.KClass
 
-class Comparator<Entity : ADLViewEntity>(
+class Comparator<Entity : Identifiable>(
     private val delegatesMap: Map<KClass<Entity>, AdapterDelegate<View, Entity>>
 ) : DiffUtil.ItemCallback<Entity>() {
 

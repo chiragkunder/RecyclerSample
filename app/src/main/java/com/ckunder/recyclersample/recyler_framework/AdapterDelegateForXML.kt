@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import com.ckunder.recyclersample.ADLViewEntity
+import com.ckunder.recyclersample.Identifiable
 
-abstract class AdapterDelegateForXML<Entity : ADLViewEntity> : AdapterDelegate<View, Entity>() {
+abstract class AdapterDelegateForXML<Entity : Identifiable> : AdapterDelegate<View, Entity>() {
 
     @LayoutRes
     abstract fun getLayoutId(): Int

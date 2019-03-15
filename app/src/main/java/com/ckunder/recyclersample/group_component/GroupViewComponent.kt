@@ -1,15 +1,7 @@
 package com.ckunder.recyclersample.group_component
 
-import android.util.Log
-import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.ckunder.recyclersample.R
-import com.ckunder.recyclersample.headline_component.TwoLineViewComponent
 import com.ckunder.recyclersample.recyler_framework.AdapterDelegateForXML
 import com.ckunder.recyclersample.recyler_framework.N26ViewHolder
-import com.ckunder.recyclersample.recyler_framework.RecyclerViewAdapter
-import kotlinx.android.synthetic.main.group_view_component.view.*
 
 class GroupViewComponent() : AdapterDelegateForXML<GroupADLViewEntity>() {
 

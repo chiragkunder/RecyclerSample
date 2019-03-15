@@ -1,10 +1,10 @@
-package com.ckunder.recyclersample.headline_component
+package com.ckunder.recyclersample.two_line_delegate
 
-import com.ckunder.recyclersample.ADLViewEntity
+import com.ckunder.recyclersample.Identifiable
 import java.util.concurrent.atomic.AtomicLong
 
 data class TwoLineADLViewEntity(
     override val id: Long = AtomicLong(Math.random().toLong()).decrementAndGet(),
     val title: String,
     val subtitle: String
-) : ADLViewEntity
+) : Identifiable
