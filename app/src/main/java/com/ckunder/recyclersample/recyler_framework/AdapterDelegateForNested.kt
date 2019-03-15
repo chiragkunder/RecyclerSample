@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import com.ckunder.recyclersample.Identifiable
 
-abstract class AdapterDelegateForXML<Entity : Identifiable> : AdapterDelegate<Entity>() {
+abstract class AdapterDelegateForNested<Entity : Identifiable> : AdapterDelegate<Entity>() {
 
     @LayoutRes
     abstract fun getLayoutId(): Int

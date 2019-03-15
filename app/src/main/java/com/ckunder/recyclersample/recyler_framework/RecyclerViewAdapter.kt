@@ -10,7 +10,7 @@ import kotlin.reflect.KClass
 
 @Suppress("UNCHECKED_CAST")
 class RecyclerViewAdapter<Entity : Identifiable, VH : N26ViewHolder>(
-    private val delegatesMap: Map<KClass<Entity>, AdapterDelegate<View, Entity>>
+    private val delegatesMap: Map<KClass<Entity>, AdapterDelegate<Entity>>
 ) : ListAdapter<Entity, VH>(Comparator<Entity>(delegatesMap)) {
 
     init {
@@ -51,7 +51,7 @@ class RecyclerViewAdapter<Entity : Identifiable, VH : N26ViewHolder>(
 
     override fun getItemViewType(position: Int): Int = getDelegateForPosition(position).getItemType()
 
-    private fun getDelegateForViewType(@LayoutRes viewType: Int): AdapterDelegate<View, Entity> =
+    private fun getDelegateForViewType(@LayoutRes viewType: Int): AdapterDelegate<Entity> =
         delegatesMap
             .entries
             .asSequence()
@@ -59,7 +59,7 @@ class RecyclerViewAdapter<Entity : Identifiable, VH : N26ViewHolder>(
             .map { it.value }
             .firstOrNull() ?: throw IllegalStateException("View delegate not found for ViewType: $viewType")
 
-    private fun getDelegateForPosition(position: Int): AdapterDelegate<View, Entity> {
+    private fun getDelegateForPosition(position: Int): AdapterDelegate<Entity> {
         val item = items[position]
         return delegatesMap[item::class]
             ?: throw IllegalStateException("View delegate not found for item of type: ${item::class}.")

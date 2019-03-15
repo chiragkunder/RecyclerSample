@@ -7,7 +7,7 @@ import java.lang.IllegalStateException
 import kotlin.reflect.KClass
 
 class Comparator<Entity : Identifiable>(
-    private val delegatesMap: Map<KClass<Entity>, AdapterDelegate<View, Entity>>
+    private val delegatesMap: Map<KClass<Entity>, AdapterDelegate<Entity>>
 ) : DiffUtil.ItemCallback<Entity>() {
 
     override fun areItemsTheSame(oldItem: Entity, newItem: Entity): Boolean {

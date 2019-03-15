@@ -4,7 +4,7 @@ import android.view.View
 import com.ckunder.recyclersample.Identifiable
 
 @Suppress("UNCHECKED_CAST")
-abstract class AdapterDelegateForView<VIEW : View, ENTITY : Identifiable> : AdapterDelegate<VIEW, ENTITY>() {
+abstract class AdapterDelegateForView<VIEW : View, ENTITY : Identifiable> : AdapterDelegate<ENTITY>() {
 
     abstract fun bindView(
         view: VIEW,
@@ -16,5 +16,5 @@ abstract class AdapterDelegateForView<VIEW : View, ENTITY : Identifiable> : Adap
         bindView(holder.itemView as VIEW, viewEntity, payloads)
     }
 
-    override fun unBind(view: VIEW) {}
+    override fun unBind(view: View) {}
 }

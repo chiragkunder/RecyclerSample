@@ -1,19 +1,23 @@
 package com.ckunder.recyclersample
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ckunder.recyclersample.cards_component.CardViewComponent
 import com.ckunder.recyclersample.cards_component.CardADLViewEntity
+import com.ckunder.recyclersample.cards_component.CardViewComponent
 import com.ckunder.recyclersample.group_component.GroupADLViewEntity
 import com.ckunder.recyclersample.group_component.GroupViewComponent
-import com.ckunder.recyclersample.two_line_delegate.TwoLineADLViewEntity
-import com.ckunder.recyclersample.two_line_delegate.TwoLineDelegate
+import com.ckunder.recyclersample.recyler_framework.AdapterDelegate
 import com.ckunder.recyclersample.recyler_framework.N26ViewHolder
 import com.ckunder.recyclersample.recyler_framework.RecyclerViewAdapter
+import com.ckunder.recyclersample.two_line_delegate.TwoLineADLViewEntity
+import com.ckunder.recyclersample.two_line_delegate.TwoLineDelegate
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.reflect.KClass
 
+@Suppress("UNCHECKED_CAST")
 class MainActivity : AppCompatActivity() {
 
     private val viewPool = RecyclerView.RecycledViewPool()
@@ -47,8 +51,7 @@ class MainActivity : AppCompatActivity() {
         TwoLineADLViewEntity(title = "title16", subtitle = "subtitle16")
     )
 
-    private val recyclerViewAdapter =
-        RecyclerViewAdapter<ADLViewController, N26ViewHolder>(viewPool)
+    private val recyclerViewAdapter = RecyclerViewAdapter<Identifiable, N26ViewHolder>(provideComponents())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,14 +63,14 @@ class MainActivity : AppCompatActivity() {
             setRecycledViewPool(viewPool)
         }
 
-        recyclerViewAdapter.updateList(uiEntities.map { createComponent(it) })
+        recyclerViewAdapter.updateList(uiEntities)
     }
 
-    private fun createComponent(adlViewEntity: Identifiable): ADLViewController =
-        when (adlViewEntity) {
-            is TwoLineADLViewEntity -> TwoLineDelegate(adlViewEntity)
-            is GroupADLViewEntity -> GroupViewComponent(adlViewEntity)
-            is CardADLViewEntity -> CardViewComponent(adlViewEntity)
-            else -> throw Exception("")
-        }
+    private fun provideComponents(): Map<KClass<Identifiable>, AdapterDelegate<Identifiable>> {
+        val delegates = HashMap<KClass<out Identifiable>, AdapterDelegate<Identifiable>>()
+        delegates[TwoLineADLViewEntity::class] = TwoLineDelegate() as AdapterDelegate<Identifiable>
+        delegates[GroupADLViewEntity::class] = GroupViewComponent() as AdapterDelegate<Identifiable>
+        delegates[CardADLViewEntity::class] = CardViewComponent() as AdapterDelegate<Identifiable>
+        return delegates as Map<KClass<Identifiable>, AdapterDelegate<Identifiable>>
+    }
 }

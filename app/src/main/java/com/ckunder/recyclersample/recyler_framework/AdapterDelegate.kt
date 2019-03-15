@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import com.ckunder.recyclersample.Identifiable
 
 @Suppress("UNCHECKED_CAST")
-abstract class AdapterDelegate<VIEW : View, ENTITY : Identifiable> {
+abstract class AdapterDelegate<ENTITY : Identifiable> : BaseDelegate<ENTITY> {
 
     abstract fun getItemType(): Int
 
-    abstract fun createView(parent: ViewGroup): VIEW
+    abstract fun createView(parent: ViewGroup): View
 
     abstract fun bindView(
         holder: N26ViewHolder,
@@ -17,7 +17,7 @@ abstract class AdapterDelegate<VIEW : View, ENTITY : Identifiable> {
         payloads: MutableList<Any?>
     )
 
-    abstract fun unBind(view: VIEW)
+    abstract fun unBind(view: View)
 
     open fun getChangePayload(oldItem: ENTITY, newItem: ENTITY): Any? = null
 

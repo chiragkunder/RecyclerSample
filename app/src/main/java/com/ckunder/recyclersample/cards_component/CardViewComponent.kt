@@ -1,11 +1,8 @@
 package com.ckunder.recyclersample.cards_component
 
-import android.util.Log
-import androidx.recyclerview.widget.RecyclerView
-import com.ckunder.recyclersample.recyler_framework.N26ViewHolder
 import com.ckunder.recyclersample.R
-import com.ckunder.recyclersample.ADLViewController
 import com.ckunder.recyclersample.recyler_framework.AdapterDelegateForXML
+import com.ckunder.recyclersample.recyler_framework.N26ViewHolder
 import kotlinx.android.synthetic.main.two_line_view_component.view.*
 
 private const val TITLE_CHANGED = 0
