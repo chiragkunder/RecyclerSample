@@ -15,7 +15,7 @@ public abstract class ViewHolderBinder {
      */
     public abstract void bind(@NonNull final RecyclerView.ViewHolder viewHolder, @NonNull final DisplayableItem item);
 
-    public void bind(@NonNull RecyclerView.ViewHolder holder, @NonNull final DisplayableItem item, @NonNull List<Object> payloads) {
-        bind(holder, item);
+    public void bind(@NonNull RecyclerView.ViewHolder viewHolder, @NonNull final DisplayableItem item, @NonNull List<Object> payloads) {
+        bind(viewHolder, item);
     }
 }

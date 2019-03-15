@@ -1,6 +1,8 @@
 package com.ckunder.recyclersample2.genericAdapter;
 
-public interface ItemComparator {
+import androidx.annotation.Nullable;
+
+public abstract class ItemComparator {
 
     /**
      * Decides whether two {@link DisplayableItem} represent the same Item.
@@ -8,7 +10,7 @@ public interface ItemComparator {
      *
      * @return True if the two items represent the same object or false if they are different.
      */
-    boolean areItemsTheSame(final DisplayableItem item1, final DisplayableItem item2);
+    public abstract boolean areItemsTheSame(final DisplayableItem item1, final DisplayableItem item2);
 
     /**
      * Checks whether the visual representation of two {@link DisplayableItem}s is the same.
@@ -20,5 +22,10 @@ public interface ItemComparator {
      * @return True if the visual representation for the {@link DisplayableItem}s are the same or
      * false if they are different.
      */
-    boolean areContentsTheSame(final DisplayableItem item1, final DisplayableItem item2);
+    public abstract boolean areContentsTheSame(final DisplayableItem item1, final DisplayableItem item2);
+
+    @Nullable
+    public Object getChangePayload(final DisplayableItem oldItem, final DisplayableItem newItem) {
+        return null;
+    }
 }

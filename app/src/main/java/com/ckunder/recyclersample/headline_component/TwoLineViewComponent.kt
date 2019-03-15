@@ -14,12 +14,6 @@ class TwoLineViewComponent(
     override fun getLayoutId(): Int = R.layout.two_line_view_component
 
     override fun onCreate(holder: ViewHolder, viewPool: RecyclerView.RecycledViewPool) {
-        val position = holder.adapterPosition
-
-        holder.itemView.setOnClickListener {
-            //Send events
-        }
-
         Log.i("SAMPLE_VIEWPOOL", "Headline: $viewPool")
     }
 
@@ -28,4 +22,3 @@ class TwoLineViewComponent(
         holder.itemView.subtitle.text = twoLineADLViewEntity.subtitle
     }
 }
-
