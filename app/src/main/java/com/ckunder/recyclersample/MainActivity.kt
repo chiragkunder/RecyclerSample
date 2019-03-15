@@ -47,10 +47,12 @@ class MainActivity : AppCompatActivity() {
         TwoLineADLViewEntity(title = "title16", subtitle = "subtitle16")
     )
 
+    private val childComponents = provideGroupComponents()
+    private val childAdapter = RecyclerViewAdapter<ViewComponent<ADLViewEntity>, ViewHolder>(viewPool, childComponents)
+
+    private val parentComponents = provideComponents()
     private val recyclerViewAdapter =
-        RecyclerViewAdapter<ViewComponent<ADLViewEntity>, ViewHolder>(viewPool, provideComponents())
-    private val childAdapter =
-        RecyclerViewAdapter<ViewComponent<ADLViewEntity>, ViewHolder>(viewPool, provideGroupComponents())
+        RecyclerViewAdapter<ViewComponent<ADLViewEntity>, ViewHolder>(viewPool, parentComponents)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +70,8 @@ class MainActivity : AppCompatActivity() {
     private fun provideComponents(): Map<KClass<out ADLViewEntity>, ViewComponent<ADLViewEntity>> {
         val delegates = HashMap<KClass<out ADLViewEntity>, ViewComponent<ADLViewEntity>>()
         delegates[TwoLineADLViewEntity::class] = TwoLineViewComponent() as ViewComponent<ADLViewEntity>
-        delegates[GroupADLViewEntity::class] = NestedRecyclerViewComponent(childAdapter) as ViewComponent<ADLViewEntity>
+        delegates[GroupADLViewEntity::class] =
+                NestedRecyclerViewComponent(childAdapter) as ViewComponent<ADLViewEntity>
         delegates[CardADLViewEntity::class] = CardViewComponent() as ViewComponent<ADLViewEntity>
         return delegates
     }
