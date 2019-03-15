@@ -6,8 +6,9 @@ import com.ckunder.recyclersample.R
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewComponent
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewEntity
 import com.ckunder.recyclersample2.adlAdapter.AdlViewHolder
+import javax.inject.Inject
 
-class TwoLineAdlViewHolderController : AdlViewHolderController<TwoLineAdlViewEntity>() {
+class TwoLineAdlViewHolderController @Inject constructor(): AdlViewHolderController<TwoLineAdlViewEntity>() {
 
     override fun createViewHolder(
         parent: ViewGroup,
