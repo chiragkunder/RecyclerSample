@@ -10,9 +10,6 @@ import com.ckunder.recyclersample2.genericAdapter.ViewHolderFactory
 
 abstract class AdlViewHolderController<T : AdlViewEntity> : ViewHolderFactory, ViewHolderBinder() {
 
-    @LayoutRes
-    abstract fun getLayoutId(): Int
-
     override fun bind(viewHolder: RecyclerView.ViewHolder, item: DisplayableItem<*>) {
         bindView(viewHolder.itemView, item.model as T, null)
     }

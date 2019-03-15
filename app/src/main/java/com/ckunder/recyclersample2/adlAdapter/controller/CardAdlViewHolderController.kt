@@ -3,7 +3,6 @@ package com.ckunder.recyclersample2.adlAdapter.controller
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ckunder.recyclersample.R
 import com.ckunder.recyclersample2.adl.CardAdlViewComponent
 import com.ckunder.recyclersample2.adl.CardAdlViewEntity
 import com.ckunder.recyclersample2.adlAdapter.AdlViewHolder
@@ -15,12 +14,8 @@ private const val SUBTITLE_CHANGED = 1
 
 class CardAdlViewHolderController @Inject constructor() : AdlViewHolderController<CardAdlViewEntity>() {
 
-    override fun getLayoutId(): Int = R.layout.card_view_component
-
-    override fun createViewHolder(
-        parent: ViewGroup,
-        viewPool: RecyclerView.RecycledViewPool?
-    ): RecyclerView.ViewHolder = AdlViewHolder(CardAdlViewComponent(parent.context), getLayoutId())
+    override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder =
+        AdlViewHolder(CardAdlViewComponent(parent.context))
 
     override fun bindView(
         itemView: View,
@@ -44,11 +39,11 @@ class CardAdlViewHolderController @Inject constructor() : AdlViewHolderControlle
     override fun getChangePayload(oldEntity: CardAdlViewEntity, newEntity: CardAdlViewEntity): Any? {
         val changedPayloads = mutableListOf<Int>()
 
-        if(oldEntity.title != newEntity.title) {
+        if (oldEntity.title != newEntity.title) {
             changedPayloads += TITLE_CHANGED
         }
 
-        if(oldEntity.subtitle != newEntity.subtitle) {
+        if (oldEntity.subtitle != newEntity.subtitle) {
             changedPayloads += SUBTITLE_CHANGED
         }
 

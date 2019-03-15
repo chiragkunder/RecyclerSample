@@ -6,6 +6,7 @@ import com.ckunder.recyclersample2.genericAdapter.DisplayableItem
 import com.ckunder.recyclersample2.genericAdapter.ItemComparator
 import javax.inject.Inject
 
+// This assumes all the elements in the RV are ADL. If not a custom comparator must be created.
 class AdlItemComparator @Inject constructor(
     private val controllerMap: Map<Int, @JvmSuppressWildcards AdlViewHolderController<*>>
 ) : ItemComparator() {

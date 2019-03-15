@@ -17,10 +17,6 @@ public abstract class SimpleViewHolderFactory implements ViewHolderFactory {
         this.context = context;
     }
 
-    public RecyclerView.ViewHolder createViewHolder(ViewGroup viewGroup, RecyclerView.RecycledViewPool pool) {
-        return createViewHolder(viewGroup);
-    }
-
     /**
      * Creates a {@link RecyclerView.ViewHolder}
      *

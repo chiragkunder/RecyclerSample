@@ -6,5 +6,5 @@ import androidx.recyclerview.widget.RecyclerView
 
 interface ViewHolderFactory {
 
-    fun createViewHolder(parent: ViewGroup, viewPool: RecyclerView.RecycledViewPool? = null): RecyclerView.ViewHolder
+    fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder
 }

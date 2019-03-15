@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,29 +27,18 @@ public class RecyclerViewAdapter extends ListAdapter<DisplayableItem, RecyclerVi
     @NonNull
     private final Map<Integer, ViewHolderBinder> binderMap;
 
-    @Nullable
-    private final RecyclerView.RecycledViewPool pool;
-
     public RecyclerViewAdapter(@NonNull final ItemComparator comparator,
                                @NonNull final Map<Integer, ViewHolderFactory> factoryMap,
                                @NonNull final Map<Integer, ViewHolderBinder> binderMap) {
-        this(comparator, factoryMap, binderMap, null);
-    }
-
-    public RecyclerViewAdapter(@NonNull final ItemComparator comparator,
-                               @NonNull final Map<Integer, ViewHolderFactory> factoryMap,
-                               @NonNull final Map<Integer, ViewHolderBinder> binderMap,
-                               @Nullable final RecyclerView.RecycledViewPool pool) {
         super(new RecyclerDiffItemCallback(comparator));
         this.factoryMap = factoryMap;
         this.binderMap = binderMap;
-        this.pool = pool;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, final int viewType) {
-        return factoryMap.get(viewType).createViewHolder(parent, null);
+        return factoryMap.get(viewType).createViewHolder(parent);
     }
 
     @Override
@@ -117,6 +107,12 @@ public class RecyclerViewAdapter extends ListAdapter<DisplayableItem, RecyclerVi
         @Override
         public boolean areContentsTheSame(final DisplayableItem oldItem, final DisplayableItem newItem) {
             return comparator.areContentsTheSame(oldItem, newItem);
+        }
+
+        @Nullable
+        @Override
+        public Object getChangePayload(final DisplayableItem oldItem, final DisplayableItem newItem) {
+            return comparator.getChangePayload(oldItem, newItem);
         }
     }
 }

@@ -13,7 +13,7 @@ class CardAdlViewComponent(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
     root: ViewGroup? = null
-) :  FrameLayout(context, attrs, defStyleAttr) {
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     init {
         root

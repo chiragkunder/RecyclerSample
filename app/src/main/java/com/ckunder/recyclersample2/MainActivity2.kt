@@ -19,6 +19,9 @@ import javax.inject.Inject
 
 class MainActivity2 : AppCompatActivity() {
 
+    // This can be done much more gracefully.
+    // I will come up with a way to make it easy to wrap the adl view entities in displayable items that does not involve
+    // repetition.
     private val uiEntities: List<DisplayableItem<*>> = mutableListOf(
         TwoLineAdlViewEntity(title = "title1", subtitle = "subtitle1").toDisplayableItem(TwoLineAdlViewComponent.layoutId),
         TwoLineAdlViewEntity(title = "title3", subtitle = "subtitle3").toDisplayableItem(TwoLineAdlViewComponent.layoutId),
@@ -40,21 +43,15 @@ class MainActivity2 : AppCompatActivity() {
     )
 
     @Inject
-    lateinit var controllerMap: Map<Int, @JvmSuppressWildcards AdlViewHolderController<*>>
+    lateinit var recyclerAdapter: RecyclerViewAdapter
 
-    @Inject
-    lateinit var comparator: ItemComparator
-
-    private lateinit var recyclerAdapter: RecyclerViewAdapter
-
-    private val component by lazy(LazyThreadSafetyMode.NONE) { DaggerMainActivity2Component.create() }
+    private val component by lazy(LazyThreadSafetyMode.NONE) { DaggerMainActivity2Component.builder().build() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         component.inject(this)
 
-        recyclerAdapter = RecyclerViewAdapter(comparator, controllerMap, controllerMap)
         with(recyclerView) {
             adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(context)
