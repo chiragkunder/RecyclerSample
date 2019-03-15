@@ -45,6 +45,8 @@ class RecyclerViewAdapter<Entity : Identifiable, VH : N26ViewHolder>(
         super.submitList(items)
     }
 
+    override fun getItemId(position: Int): Long = items[position].id
+
     override fun getItemCount(): Int = items.size
 
     override fun getItemViewType(position: Int): Int = getDelegateForPosition(position).getItemType()
