@@ -36,4 +36,8 @@ data class TwoLineAdlViewEntity(
     override val id: Long = AtomicLong(Math.random().toLong()).decrementAndGet(),
     val title: String,
     val subtitle: String
-) : ViewEntity
+) : ViewEntity {
+
+    override val viewType: Int
+        get() = TwoLineAdlViewComponent.layoutId
+}
