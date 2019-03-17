@@ -1,36 +1,34 @@
-package com.ckunder.recyclersample2.adlAdapter.controller
+package com.ckunder.recyclersample2.adl.adapterController
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recyclersample2.adl.CardAdlViewComponent
 import com.ckunder.recyclersample2.adl.CardAdlViewEntity
-import com.ckunder.recyclersample2.genericAdapter.controller.ViewHolder
+import com.ckunder.recyclersample2.genericAdapter.controller.ViewHolderController
 import kotlinx.android.synthetic.main.card_view_component.view.*
 import javax.inject.Inject
 
 private const val TITLE_CHANGED = 0
 private const val SUBTITLE_CHANGED = 1
 
-class CardAdlViewHolderController @Inject constructor() : AdlViewHolderController<CardAdlViewEntity>() {
+class CardAdlViewHolderController @Inject constructor() : ViewHolderController<CardAdlViewEntity>() {
 
-    override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder =
-        ViewHolder(CardAdlViewComponent(parent.context))
+    override fun inflateView(parent: ViewGroup): View = CardAdlViewComponent(parent.context)
 
     override fun bindView(
         itemView: View,
-        adlViewEntity: CardAdlViewEntity,
+        viewEntity: CardAdlViewEntity,
         payloads: List<Any>?
     ) {
         if (payloads.isNullOrEmpty()) {
             with(itemView as CardAdlViewComponent) {
-                setViewEntity(adlViewEntity)
+                setViewEntity(viewEntity)
             }
         } else {
             payloads.forEach {
                 when (it) {
-                    TITLE_CHANGED -> itemView.title.text = adlViewEntity.title
-                    SUBTITLE_CHANGED -> itemView.subtitle.text = adlViewEntity.subtitle
+                    TITLE_CHANGED -> itemView.title.text = viewEntity.title
+                    SUBTITLE_CHANGED -> itemView.subtitle.text = viewEntity.subtitle
                 }
             }
         }

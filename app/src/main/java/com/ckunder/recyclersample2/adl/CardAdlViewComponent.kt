@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.ckunder.recyclersample.R
 import kotlinx.android.synthetic.main.two_line_view_component.view.*
+import java.util.concurrent.atomic.AtomicLong
 
 class CardAdlViewComponent(
     context: Context,
@@ -30,3 +31,9 @@ class CardAdlViewComponent(
         const val layoutId = R.layout.card_view_component
     }
 }
+
+data class CardAdlViewEntity(
+    override val id: Long = AtomicLong(Math.random().toLong()).decrementAndGet(),
+    val title: String,
+    val subtitle: String
+) : ViewEntity

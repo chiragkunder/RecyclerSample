@@ -1,4 +1,4 @@
-package com.ckunder.recyclersample2
+package com.ckunder.recyclersample2.feature
 
 import dagger.Component
 import javax.inject.Singleton

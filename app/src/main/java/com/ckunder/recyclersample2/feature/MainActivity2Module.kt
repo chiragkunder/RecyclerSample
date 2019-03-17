@@ -1,11 +1,11 @@
-package com.ckunder.recyclersample2
+package com.ckunder.recyclersample2.feature
 
 import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recyclersample.R
 import com.ckunder.recyclersample2.adl.CardAdlViewComponent
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewComponent
-import com.ckunder.recyclersample2.adlAdapter.controller.CardAdlViewHolderController
-import com.ckunder.recyclersample2.adlAdapter.controller.TwoLineAdlViewHolderController
+import com.ckunder.recyclersample2.adl.adapterController.CardAdlViewHolderController
+import com.ckunder.recyclersample2.adl.adapterController.TwoLineAdlViewHolderController
 import com.ckunder.recyclersample2.genericAdapter.ItemComparator
 import com.ckunder.recyclersample2.genericAdapter.RecyclerViewAdapter
 import com.ckunder.recyclersample2.genericAdapter.controller.DefaultItemComparator
