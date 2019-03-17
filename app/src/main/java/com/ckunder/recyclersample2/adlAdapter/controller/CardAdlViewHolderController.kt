@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recyclersample2.adl.CardAdlViewComponent
 import com.ckunder.recyclersample2.adl.CardAdlViewEntity
-import com.ckunder.recyclersample2.genericAdapter.ViewHolder
+import com.ckunder.recyclersample2.genericAdapter.controller.ViewHolder
 import kotlinx.android.synthetic.main.card_view_component.view.*
 import javax.inject.Inject
 

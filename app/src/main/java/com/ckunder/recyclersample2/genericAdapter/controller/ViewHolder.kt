@@ -1,4 +1,4 @@
-package com.ckunder.recyclersample2.genericAdapter
+package com.ckunder.recyclersample2.genericAdapter.controller
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

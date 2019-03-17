@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewComponent
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewEntity
-import com.ckunder.recyclersample2.genericAdapter.ViewHolder
+import com.ckunder.recyclersample2.genericAdapter.controller.ViewHolder
 import javax.inject.Inject
 
 class TwoLineAdlViewHolderController @Inject constructor() : AdlViewHolderController<TwoLineAdlViewEntity>() {

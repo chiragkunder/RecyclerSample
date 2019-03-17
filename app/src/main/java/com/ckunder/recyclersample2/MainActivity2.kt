@@ -10,8 +10,8 @@ import com.ckunder.recyclersample2.adl.TwoLineAdlViewComponent
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewEntity
 import com.ckunder.recyclersample2.genericAdapter.DisplayableItem
 import com.ckunder.recyclersample2.genericAdapter.RecyclerViewAdapter
-import com.ckunder.recyclersample2.genericAdapter.group.Group
-import com.ckunder.recyclersample2.genericAdapter.group.toDisplayableItem
+import com.ckunder.recyclersample2.genericAdapter.controller.group.Group
+import com.ckunder.recyclersample2.genericAdapter.controller.group.toDisplayableItem
 import com.ckunder.recyclersample2.genericAdapter.toDisplayableItem
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject

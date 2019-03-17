@@ -3,14 +3,14 @@ package com.ckunder.recyclersample2
 import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recyclersample2.adl.CardAdlViewComponent
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewComponent
-import com.ckunder.recyclersample2.adlAdapter.AdlItemComparator
 import com.ckunder.recyclersample2.adlAdapter.controller.CardAdlViewHolderController
 import com.ckunder.recyclersample2.adlAdapter.controller.TwoLineAdlViewHolderController
 import com.ckunder.recyclersample2.genericAdapter.ItemComparator
 import com.ckunder.recyclersample2.genericAdapter.RecyclerViewAdapter
-import com.ckunder.recyclersample2.genericAdapter.ViewHolderController
-import com.ckunder.recyclersample2.genericAdapter.group.GROUP_VIEW_TYPE
-import com.ckunder.recyclersample2.genericAdapter.group.GroupViewHolderController
+import com.ckunder.recyclersample2.genericAdapter.controller.DefaultItemComparator
+import com.ckunder.recyclersample2.genericAdapter.controller.ViewHolderController
+import com.ckunder.recyclersample2.genericAdapter.controller.group.GROUP_VIEW_TYPE
+import com.ckunder.recyclersample2.genericAdapter.controller.group.GroupViewHolderController
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -44,7 +44,7 @@ abstract class AdapterModule {
 
     @Binds
     @Singleton
-    abstract fun adlItemComparator(comparator: AdlItemComparator): ItemComparator
+    abstract fun adlItemComparator(comparator: DefaultItemComparator): ItemComparator
 }
 
 @Module(includes = [AdapterModule::class])

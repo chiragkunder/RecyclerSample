@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recyclersample2.adl.AdlViewEntity
 import com.ckunder.recyclersample2.genericAdapter.DisplayableItem
-import com.ckunder.recyclersample2.genericAdapter.ViewHolderController
+import com.ckunder.recyclersample2.genericAdapter.controller.ViewHolderController
 
 abstract class AdlViewHolderController<T : AdlViewEntity> : ViewHolderController<T>() {
 

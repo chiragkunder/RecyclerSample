@@ -1,11 +1,15 @@
-package com.ckunder.recyclersample2.genericAdapter.group
+package com.ckunder.recyclersample2.genericAdapter.controller.group
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recyclersample.R
-import com.ckunder.recyclersample2.genericAdapter.*
+import com.ckunder.recyclersample2.genericAdapter.DisplayableItem
+import com.ckunder.recyclersample2.genericAdapter.ItemComparator
+import com.ckunder.recyclersample2.genericAdapter.RecyclerViewAdapter
+import com.ckunder.recyclersample2.genericAdapter.controller.ViewHolder
+import com.ckunder.recyclersample2.genericAdapter.controller.ViewHolderController
 import dagger.Lazy
 import kotlinx.android.synthetic.main.group_view_component.view.*
 import javax.inject.Inject

@@ -1,6 +1,9 @@
-package com.ckunder.recyclersample2.genericAdapter
+package com.ckunder.recyclersample2.genericAdapter.controller
 
 import androidx.recyclerview.widget.RecyclerView
+import com.ckunder.recyclersample2.genericAdapter.DisplayableItem
+import com.ckunder.recyclersample2.genericAdapter.ViewHolderBinder
+import com.ckunder.recyclersample2.genericAdapter.ViewHolderFactory
 
 abstract class ViewHolderController<T> : ViewHolderBinder, ViewHolderFactory {
 

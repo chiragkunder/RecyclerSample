@@ -1,14 +1,11 @@
-package com.ckunder.recyclersample2.adlAdapter
+package com.ckunder.recyclersample2.genericAdapter.controller
 
 import com.ckunder.recyclersample2.adl.AdlViewEntity
-import com.ckunder.recyclersample2.adlAdapter.controller.AdlViewHolderController
 import com.ckunder.recyclersample2.genericAdapter.DisplayableItem
 import com.ckunder.recyclersample2.genericAdapter.ItemComparator
-import com.ckunder.recyclersample2.genericAdapter.ViewHolderController
 import javax.inject.Inject
 
-// This assumes all the elements in the RV are ADL. If not a custom comparator must be created.
-class AdlItemComparator @Inject constructor(
+class DefaultItemComparator @Inject constructor(
     private val controllerMap: Map<Int, @JvmSuppressWildcards ViewHolderController<*>>
 ) : ItemComparator() {
 
@@ -17,7 +14,7 @@ class AdlItemComparator @Inject constructor(
         val adlitem2 = item2.model as AdlViewEntity
 
         if (adlItem1::class == adlitem2::class) {
-            val controller = controllerMap[item1.type] as AdlViewHolderController<AdlViewEntity>
+            val controller = controllerMap[item1.type] as ViewHolderController<AdlViewEntity>
             return controller.areItemsTheSame(adlItem1, adlitem2)
         }
 
@@ -29,7 +26,7 @@ class AdlItemComparator @Inject constructor(
         val adlitem2 = item2.model as AdlViewEntity
 
         if (adlItem1::class == adlitem2::class) {
-            val controller = controllerMap[item1.type] as AdlViewHolderController<AdlViewEntity>
+            val controller = controllerMap[item1.type] as ViewHolderController<AdlViewEntity>
             return controller.areContentsTheSame(adlItem1, adlitem2)
         }
 
@@ -41,7 +38,7 @@ class AdlItemComparator @Inject constructor(
         val adlNewItem2 = newItem.model as AdlViewEntity
 
         if (adlOldItem1::class == adlNewItem2::class) {
-            val controller = controllerMap[oldItem.type] as AdlViewHolderController<AdlViewEntity>
+            val controller = controllerMap[oldItem.type] as ViewHolderController<AdlViewEntity>
             return controller.getChangePayload(adlOldItem1, adlNewItem2)
         }
 
