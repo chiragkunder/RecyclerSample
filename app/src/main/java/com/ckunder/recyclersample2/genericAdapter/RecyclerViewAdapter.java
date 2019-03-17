@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +26,8 @@ public class RecyclerViewAdapter extends ListAdapter<DisplayableItem, RecyclerVi
     @NonNull
     private final Map<Integer, ViewHolderBinder> binderMap;
 
+    // If this is kotlin, the item comparator can be an optional parameter with DefaultItemComparator as fallback.
+    // Also, instead of taking two maps (factory and binder) it can get only one with the controllers.
     public RecyclerViewAdapter(@NonNull final ItemComparator comparator,
                                @NonNull final Map<Integer, ViewHolderFactory> factoryMap,
                                @NonNull final Map<Integer, ViewHolderBinder> binderMap) {
