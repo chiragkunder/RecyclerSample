@@ -1,6 +1,7 @@
 package com.ckunder.recyclersample2
 
 import androidx.recyclerview.widget.RecyclerView
+import com.ckunder.recyclersample.R
 import com.ckunder.recyclersample2.adl.CardAdlViewComponent
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewComponent
 import com.ckunder.recyclersample2.adlAdapter.controller.CardAdlViewHolderController
@@ -40,6 +41,13 @@ abstract class AdapterModule {
     @Binds
     @Singleton
     abstract fun provideGroupViewHolderController(controller: GroupViewHolderController)
+            : ViewHolderController<*>
+
+    @IntoMap
+    @IntKey(R.layout.item_text)
+    @Binds
+    @Singleton
+    abstract fun provideTextViewHolderController(controller: TextViewHolderController)
             : ViewHolderController<*>
 
     @Binds
