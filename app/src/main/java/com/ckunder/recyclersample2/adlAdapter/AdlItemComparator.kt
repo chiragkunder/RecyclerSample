@@ -4,11 +4,12 @@ import com.ckunder.recyclersample2.adl.AdlViewEntity
 import com.ckunder.recyclersample2.adlAdapter.controller.AdlViewHolderController
 import com.ckunder.recyclersample2.genericAdapter.DisplayableItem
 import com.ckunder.recyclersample2.genericAdapter.ItemComparator
+import com.ckunder.recyclersample2.genericAdapter.ViewHolderController
 import javax.inject.Inject
 
 // This assumes all the elements in the RV are ADL. If not a custom comparator must be created.
 class AdlItemComparator @Inject constructor(
-    private val controllerMap: Map<Int, @JvmSuppressWildcards AdlViewHolderController<*>>
+    private val controllerMap: Map<Int, @JvmSuppressWildcards ViewHolderController<*>>
 ) : ItemComparator() {
 
     override fun areItemsTheSame(item1: DisplayableItem<*>, item2: DisplayableItem<*>): Boolean {

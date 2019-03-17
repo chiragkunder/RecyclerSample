@@ -4,15 +4,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ckunder.recyclersample.R
-import com.ckunder.recyclersample.cards_component.CardADLViewEntity
 import com.ckunder.recyclersample2.adl.CardAdlViewComponent
 import com.ckunder.recyclersample2.adl.CardAdlViewEntity
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewComponent
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewEntity
-import com.ckunder.recyclersample2.adlAdapter.controller.AdlViewHolderController
 import com.ckunder.recyclersample2.genericAdapter.DisplayableItem
-import com.ckunder.recyclersample2.genericAdapter.ItemComparator
 import com.ckunder.recyclersample2.genericAdapter.RecyclerViewAdapter
+import com.ckunder.recyclersample2.genericAdapter.group.Group
+import com.ckunder.recyclersample2.genericAdapter.group.toDisplayableItem
 import com.ckunder.recyclersample2.genericAdapter.toDisplayableItem
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -28,6 +27,15 @@ class MainActivity2 : AppCompatActivity() {
         TwoLineAdlViewEntity(title = "title4", subtitle = "subtitle4").toDisplayableItem(TwoLineAdlViewComponent.layoutId),
         CardAdlViewEntity(title = "Card Title", subtitle = "Card Subtitle").toDisplayableItem(CardAdlViewComponent.layoutId),
         TwoLineAdlViewEntity(title = "title4", subtitle = "subtitle4").toDisplayableItem(TwoLineAdlViewComponent.layoutId),
+        Group(
+            displayableItemList = listOf(
+                TwoLineAdlViewEntity(title = "grouped_title1", subtitle = "grouped_subtitle1").toDisplayableItem(TwoLineAdlViewComponent.layoutId),
+                TwoLineAdlViewEntity(title = "grouped_title2", subtitle = "grouped_subtitle2").toDisplayableItem(TwoLineAdlViewComponent.layoutId),
+                TwoLineAdlViewEntity(title = "grouped_title3", subtitle = "grouped_subtitle3").toDisplayableItem(TwoLineAdlViewComponent.layoutId),
+                TwoLineAdlViewEntity(title = "grouped_title4", subtitle = "grouped_subtitle4").toDisplayableItem(TwoLineAdlViewComponent.layoutId),
+                TwoLineAdlViewEntity(title = "grouped_title5", subtitle = "grouped_subtitle5").toDisplayableItem(TwoLineAdlViewComponent.layoutId)
+            )
+        ).toDisplayableItem(),
         TwoLineAdlViewEntity(title = "title5", subtitle = "subtitle5").toDisplayableItem(TwoLineAdlViewComponent.layoutId),
         TwoLineAdlViewEntity(title = "title6", subtitle = "subtitle6").toDisplayableItem(TwoLineAdlViewComponent.layoutId),
         TwoLineAdlViewEntity(title = "title7", subtitle = "subtitle7").toDisplayableItem(TwoLineAdlViewComponent.layoutId),

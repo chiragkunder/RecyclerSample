@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recyclersample2.adl.CardAdlViewComponent
 import com.ckunder.recyclersample2.adl.CardAdlViewEntity
-import com.ckunder.recyclersample2.adlAdapter.AdlViewHolder
+import com.ckunder.recyclersample2.genericAdapter.ViewHolder
 import kotlinx.android.synthetic.main.card_view_component.view.*
 import javax.inject.Inject
 
@@ -15,12 +15,12 @@ private const val SUBTITLE_CHANGED = 1
 class CardAdlViewHolderController @Inject constructor() : AdlViewHolderController<CardAdlViewEntity>() {
 
     override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder =
-        AdlViewHolder(CardAdlViewComponent(parent.context))
+        ViewHolder(CardAdlViewComponent(parent.context))
 
     override fun bindView(
         itemView: View,
         adlViewEntity: CardAdlViewEntity,
-        payloads: MutableList<Any>?
+        payloads: List<Any>?
     ) {
         if (payloads.isNullOrEmpty()) {
             with(itemView as CardAdlViewComponent) {

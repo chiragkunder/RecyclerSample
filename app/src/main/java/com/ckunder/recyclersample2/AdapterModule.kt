@@ -1,18 +1,22 @@
 package com.ckunder.recyclersample2
 
+import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recyclersample2.adl.CardAdlViewComponent
 import com.ckunder.recyclersample2.adl.TwoLineAdlViewComponent
 import com.ckunder.recyclersample2.adlAdapter.AdlItemComparator
-import com.ckunder.recyclersample2.adlAdapter.controller.AdlViewHolderController
 import com.ckunder.recyclersample2.adlAdapter.controller.CardAdlViewHolderController
 import com.ckunder.recyclersample2.adlAdapter.controller.TwoLineAdlViewHolderController
 import com.ckunder.recyclersample2.genericAdapter.ItemComparator
 import com.ckunder.recyclersample2.genericAdapter.RecyclerViewAdapter
+import com.ckunder.recyclersample2.genericAdapter.ViewHolderController
+import com.ckunder.recyclersample2.genericAdapter.group.GROUP_VIEW_TYPE
+import com.ckunder.recyclersample2.genericAdapter.group.GroupViewHolderController
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntKey
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
 @Module
 abstract class AdapterModule {
@@ -20,16 +24,26 @@ abstract class AdapterModule {
     @IntoMap
     @IntKey(TwoLineAdlViewComponent.layoutId)
     @Binds
+    @Singleton
     abstract fun provideTwoLineAdlViewHolderController(controller: TwoLineAdlViewHolderController)
-            : AdlViewHolderController<*>
+            : ViewHolderController<*>
 
     @IntoMap
     @IntKey(CardAdlViewComponent.layoutId)
     @Binds
+    @Singleton
     abstract fun provideCardAdlViewHolderController(controller: CardAdlViewHolderController)
-            : AdlViewHolderController<*>
+            : ViewHolderController<*>
+
+    @IntoMap
+    @IntKey(GROUP_VIEW_TYPE)
+    @Binds
+    @Singleton
+    abstract fun provideGroupViewHolderController(controller: GroupViewHolderController)
+            : ViewHolderController<*>
 
     @Binds
+    @Singleton
     abstract fun adlItemComparator(comparator: AdlItemComparator): ItemComparator
 }
 
@@ -38,8 +52,14 @@ object MainActivity2ListModule {
 
     @JvmStatic
     @Provides
+    @Singleton
     fun provideAdapter(
-        controllerMap: Map<Int, @JvmSuppressWildcards AdlViewHolderController<*>>,
+        controllerMap: Map<Int, @JvmSuppressWildcards ViewHolderController<*>>,
         comparator: ItemComparator
     ) = RecyclerViewAdapter(comparator, controllerMap, controllerMap)
+
+    @JvmStatic
+    @Provides
+    @Singleton
+    fun provideViewPool(): RecyclerView.RecycledViewPool = RecyclerView.RecycledViewPool()
 }
