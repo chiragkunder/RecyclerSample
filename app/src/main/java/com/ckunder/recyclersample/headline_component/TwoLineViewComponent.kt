@@ -2,6 +2,7 @@ package com.ckunder.recyclersample.headline_component
 
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
+import com.ckunder.recycler_2.recycler_view.amount.TwoLineADLViewEntity
 import com.ckunder.recyclersample.ViewHolder
 import com.ckunder.recyclersample.R
 import com.ckunder.recyclersample.ViewComponent

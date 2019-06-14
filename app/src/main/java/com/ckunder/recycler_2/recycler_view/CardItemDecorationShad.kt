@@ -7,8 +7,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recycler_2.recycler_view.adl.ViewEntity
 import com.ckunder.recycler_2.recycler_view.amount.TwoLineADLViewEntity
-import timber.log.Timber
-
 
 class CardItemDecorationShad(val context: Context) : RecyclerView.ItemDecoration() {
 
@@ -19,8 +17,8 @@ class CardItemDecorationShad(val context: Context) : RecyclerView.ItemDecoration
 
     var cornerRadius = 20.0f
     var shadowPadding = cornerRadius + 4f
-    var shadowSize: Float = 12.0f * shadowMultiplier.toFloat()
-    var shadowColor = ContextCompat.getColor(context, com.ckunder.recyclersample.R.color.colorShadow)
+    var shadowSize: Float = 24.0f * shadowMultiplier.toFloat()
+    var shadowColor = Color.BLACK
     var shadowStartColor = ContextCompat.getColor(context, com.ckunder.recyclersample.R.color.cardview_shadow_start_color)
     var shadowEndColor = ContextCompat.getColor(context, com.ckunder.recyclersample.R.color.cardview_shadow_end_color)
 
@@ -89,17 +87,14 @@ class CardItemDecorationShad(val context: Context) : RecyclerView.ItemDecoration
                     isOnlyItem(groupIndex, groupItems) -> {
                         //Only item in group
                         addRoundRect(rectF, cornerRadius, cornerRadius, cornerRadius, cornerRadius)
-                        Timber.i("DECORATORRR: Only item ${(item as TwoLineADLViewEntity).title}")
                     }
                     isLastItem(groupIndex, groupItems) -> {
                         //Last item in a group with multiple items
                         addRoundRect(rectF, bottomLeftRadius = cornerRadius, bottomRightRadius = cornerRadius)
-                        Timber.i("DECORATORRR: last item ${(item as TwoLineADLViewEntity).title}")
                     }
                     isFirstItem(groupIndex, groupItems) -> {
                         //First item in group with multiple times
                         addRoundRect(rectF, topLeftRadius = cornerRadius, topRightRadius = cornerRadius)
-                        Timber.i("DECORATORRR: first item ${(item as TwoLineADLViewEntity).title}")
                     }
                     else -> {
                         //Middle
@@ -107,7 +102,6 @@ class CardItemDecorationShad(val context: Context) : RecyclerView.ItemDecoration
                             rectF,
                             Path.Direction.CW
                         )
-                        Timber.i("DECORATORRR: Middle ${(item as TwoLineADLViewEntity).title}")
                     }
                 }
 //                c.restoreToCount(save)

@@ -93,8 +93,6 @@ class CardItemDecorationWithShadow(val context: Context) : RecyclerView.ItemDeco
                     isOnlyItem(groupIndex, groupItems) -> {
                         //Only item in group
                         addRoundRect(rectF, cornerRadius, cornerRadius, cornerRadius, cornerRadius)
-
-                        Timber.i("DECORATORRR: Only item ${(item as TwoLineADLViewEntity).title}")
                     }
                     isLastItem(groupIndex, groupItems) -> {
                         //Last item in a group with multiple items
@@ -128,8 +126,6 @@ class CardItemDecorationWithShadow(val context: Context) : RecyclerView.ItemDeco
                             -cornerRadius,
                             edgePaint
                         )
-
-                        Timber.i("DECORATORRR: last item ${(item as TwoLineADLViewEntity).title}")
                     }
                     isFirstItem(groupIndex, groupItems) -> {
                         //First item in group with multiple times
@@ -153,7 +149,6 @@ class CardItemDecorationWithShadow(val context: Context) : RecyclerView.ItemDeco
                         c.translate((-rectF.height()).toFloat(), -rectF.width() + 2 * cornerRadius)
                         c.drawRect(cornerRadius, edgeShadowTop, rectF.height().toFloat(), -cornerRadius, edgePaint)
 
-                        Timber.i("DECORATORRR: first item ${(item as TwoLineADLViewEntity).title}")
                     }
                     else -> {
                         //Middle
@@ -174,7 +169,6 @@ class CardItemDecorationWithShadow(val context: Context) : RecyclerView.ItemDeco
                         c.translate((-rectF.height()).toFloat(), -rectF.width() + 2 * cornerRadius)
                         c.drawRect(0f, edgeShadowTop, rectF.height().toFloat(), -cornerRadius, edgePaint)
 
-                        Timber.i("DECORATORRR: Middle ${(item as TwoLineADLViewEntity).title}")
                     }
                 }
                 c.restoreToCount(save)

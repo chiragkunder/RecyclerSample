@@ -2,8 +2,9 @@ package com.ckunder.recyclersample
 
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import com.ckunder.recycler_2.recycler_view.adl.ViewEntity
 
-abstract class ViewComponent(private val adlViewEntity: ADLViewEntity) {
+abstract class ViewComponent(private val adlViewEntity: ViewEntity) {
 
     @LayoutRes
     abstract fun getLayoutId(): Int

@@ -4,11 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ckunder.recyclersample.cards_component.CardViewComponent
+import com.ckunder.recycler_2.recycler_view.adl.ViewEntity
+import com.ckunder.recycler_2.recycler_view.amount.TwoLineADLViewEntity
 import com.ckunder.recyclersample.cards_component.CardADLViewEntity
+import com.ckunder.recyclersample.cards_component.CardViewComponent
 import com.ckunder.recyclersample.group_component.GroupADLViewEntity
 import com.ckunder.recyclersample.group_component.GroupViewComponent
-import com.ckunder.recyclersample.headline_component.TwoLineADLViewEntity
 import com.ckunder.recyclersample.headline_component.TwoLineViewComponent
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         recyclerViewAdapter.updateList(uiEntities.map { createComponent(it) })
     }
 
-    private fun createComponent(adlViewEntity: ADLViewEntity): ViewComponent =
+    private fun createComponent(adlViewEntity: ViewEntity): ViewComponent =
         when (adlViewEntity) {
             is TwoLineADLViewEntity -> TwoLineViewComponent(adlViewEntity)
             is GroupADLViewEntity -> GroupViewComponent(adlViewEntity)
