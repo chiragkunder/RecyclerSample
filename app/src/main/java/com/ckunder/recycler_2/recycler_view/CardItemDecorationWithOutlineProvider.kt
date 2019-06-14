@@ -1,18 +1,11 @@
 package com.ckunder.recycler_2.recycler_view
 
-import android.graphics.*
-import android.util.TypedValue
+import android.graphics.Path
+import android.graphics.Rect
+import android.graphics.RectF
 import android.view.View
-import android.view.View.LAYER_TYPE_SOFTWARE
-import androidx.annotation.ColorInt
-import androidx.core.view.ViewCompat.setLayerType
 import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recycler_2.recycler_view.adl.ViewEntity
-import com.ckunder.recycler_2.recycler_view.amount.TwoLineADLViewEntity
-import timber.log.Timber
-import android.graphics.Shader
-import android.graphics.RadialGradient
-import android.graphics.RectF
 
 
 class CardItemDecorationWithOutlineProvider() : RecyclerView.ItemDecoration() {
@@ -42,15 +35,12 @@ class CardItemDecorationWithOutlineProvider() : RecyclerView.ItemDecoration() {
                 view.clipToOutline = true
                 view.outlineProvider = onlyItemOutlineProvider
 //                        addRoundRect(rectF, cornerRadius, cornerRadius, cornerRadius, cornerRadius)
-                Timber.i("DECORATORRR: Only item ${(item as TwoLineADLViewEntity).title}")
             }
             isLastItem(groupIndex, groupItems) -> {
                 //Last item in a group with multiple items
-                Timber.i("DECORATORRR: last item ${(item as TwoLineADLViewEntity).title}")
             }
             isFirstItem(groupIndex, groupItems) -> {
                 //First item in group with multiple times
-                Timber.i("DECORATORRR: first item ${(item as TwoLineADLViewEntity).title}")
             }
             else -> {
                 //Middle
@@ -58,7 +48,6 @@ class CardItemDecorationWithOutlineProvider() : RecyclerView.ItemDecoration() {
                     rectF,
                     Path.Direction.CW
                 )
-                Timber.i("DECORATORRR: Middle ${(item as TwoLineADLViewEntity).title}")
             }
         }
     }

@@ -6,8 +6,6 @@ import android.view.View.LAYER_TYPE_SOFTWARE
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ckunder.recycler_2.recycler_view.adl.ViewEntity
-import com.ckunder.recycler_2.recycler_view.amount.TwoLineADLViewEntity
-import timber.log.Timber
 
 
 class CardItemDecorationWithShadow(val context: Context) : RecyclerView.ItemDecoration() {
@@ -19,7 +17,7 @@ class CardItemDecorationWithShadow(val context: Context) : RecyclerView.ItemDeco
 
     var cornerRadius = 20.0f
     var shadowSize = 8.0f * SHADOW_MULTIPLIER
-    var shadowColor = ContextCompat.getColor(context, com.ckunder.recyclersample.R.color.colorShadow)
+    var shadowColor = Color.BLACK
     var shadowStartColor =
         ContextCompat.getColor(context, com.ckunder.recyclersample.R.color.cardview_shadow_start_color)
     var shadowEndColor = ContextCompat.getColor(context, com.ckunder.recyclersample.R.color.cardview_shadow_end_color)
